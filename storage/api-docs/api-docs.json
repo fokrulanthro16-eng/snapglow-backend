@@ -1,0 +1,168 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SnapGlow Backend API",
+        "description": "API documentation for SnapGlow backend",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local server"
+        }
+    ],
+    "paths": {
+        "/api/tool-histories": {
+            "get": {
+                "tags": [
+                    "Tool Histories"
+                ],
+                "summary": "Get all tool histories",
+                "operationId": "fc4cbadb772c9e1e3ff31c153a66dc93",
+                "responses": {
+                    "200": {
+                        "description": "Tool histories fetched successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tool Histories"
+                ],
+                "summary": "Create a tool history",
+                "operationId": "31a78ad1d87f9cc3346a120b3c6ceaec",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "tool_type",
+                                    "input_file"
+                                ],
+                                "properties": {
+                                    "tool_type": {
+                                        "type": "string",
+                                        "example": "compress_photo"
+                                    },
+                                    "input_file": {
+                                        "type": "string",
+                                        "example": "uploads/original/photo1.jpg"
+                                    },
+                                    "output_file": {
+                                        "type": "string",
+                                        "example": "uploads/compressed/photo1.jpg"
+                                    },
+                                    "original_size_kb": {
+                                        "type": "integer",
+                                        "example": 2048
+                                    },
+                                    "processed_size_kb": {
+                                        "type": "integer",
+                                        "example": 640
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "completed"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tool history created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/tool-histories/{id}": {
+            "get": {
+                "tags": [
+                    "Tool Histories"
+                ],
+                "summary": "Get single tool history",
+                "operationId": "c3ea045fb099293583ff41bd42d68dbe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool history ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tool history fetched successfully"
+                    },
+                    "404": {
+                        "description": "Tool history not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tool Histories"
+                ],
+                "summary": "Delete a tool history",
+                "operationId": "a9abb17c18f6bcd89c00547d5d4b9b80",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool history ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tool history deleted successfully"
+                    },
+                    "404": {
+                        "description": "Tool history not found"
+                    }
+                }
+            }
+        },
+        "/api/test": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Test API",
+                "operationId": "28e36defdc583280e27438fb4d5ab803",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Tool Histories",
+            "description": "SnapGlow tool usage history endpoints"
+        },
+        {
+            "name": "Test",
+            "description": "Test"
+        }
+    ]
+}
